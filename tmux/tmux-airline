@@ -1,0 +1,41 @@
+#!/bin/bash -x
+ 
+SEP=
+SEPE=
+SEP=
+SEPE=
+ 
+CLOCK=⌚
+CALENDAR=☼
+MUSIC=♫
+ 
+WIDTH=${1}
+ 
+SMALL=80
+MEDIUM=140
+ 
+if [ "$WIDTH" -gt "$MEDIUM" ]; then
+	if type mpc >/dev/null; then
+		MPD="#[fg=colour252,bg=default,nobold,noitalics,nounderscore]$SEP#[fg=colour16,bg=colour252,bold,noitalics,nounderscore] $MUSIC $(mpc current)"
+		date_colour='colour252'
+	fi
+fi
+ 
+if [ "$WIDTH" -ge "$SMALL" ]; then
+	UNAME="#[fg=colour252,bg=colour236,nobold,noitalics,nounderscore]$SEP#[fg=colour16,bg=colour252,bold,noitalics,nounderscore] $(uname -n)"
+fi
+ 
+DATE="#[fg=colour236,bg=${date_colour:-default},nobold,noitalics,nounderscore]$SEP#[fg=colour247,bg=colour236,nobold,noitalics,nounderscore] $CALENDAR $(date +'%D')"
+TIME="#[fg=colour241,bg=colour236,nobold,noitalics,nounderscore]$SEPE#[fg=colour252,bg=colour236,bold,noitalics,nounderscore] $CLOCK $(date +'%H:%M')"
+ 
+LOAD="#[bg=colour244] $(cut -d " " -f 1-3 /proc/loadavg)"
+
+#MEMTOTAL=$(cat /proc/meminfo | head -1 | awk '{print $2}')
+#MEMTOTAL=$(expr $MEMTOTAL / 1024)
+#MEMFREE=$(cat /proc/meminfo | head -2 | tail -1 | awk '{print $2}')
+#MEMFREE=$(expr $MEMFREE / 1024)
+#MEMFREEPER=$(expr $MEMTOTAL / 100 * $MEMFREE)
+#MEM="#[bg=colour202] memfree: $MEMFREE/$MEMTOTAL"
+
+#echo "$MPD $DATE $TIME $UNAME " | sed 's/ *$/ /g'
+echo "$MPD $LOAD $DATE $TIME " | sed 's/ *$/ /g'

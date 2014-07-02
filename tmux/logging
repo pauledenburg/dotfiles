@@ -1,0 +1,5 @@
+new  -s "Logging" -n "Dmesg" "tail -f /var/log/syslog"
+#neww -n "foo/bar" /usr/bin/vim
+splitw -v -p 50 -t 0 bar
+selectw -t 1 
+selectp -t 1

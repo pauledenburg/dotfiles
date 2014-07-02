@@ -1,0 +1,32 @@
+# Splitting
+-		Split horizontally
+|		Split vertically
+
+# Movement
+arrow-right	Move to window on the right
+arrow-left	Move to window on the left
+
+j			Move to pane down
+k			Move to upper pane
+l			Move to pane on the right
+h			Move to pane on the left
+
+# KILL
+k		kill pane
+K		kill Session
+
+# Swap panes
+C-0		Swap current pane with pane 0
+C-1		Swap current pane with pane 1
+C-2		Swap current pane with pane 2
+C-3		Swap current pane with pane 3
+C-4		Swap current pane with pane 4
+
+# Handy bindings
+~		See active processes in new window
+T		Tmux manual in new window
+V		Vi manual in new window
+C-m		Manual, you'll be prompted for which one
+
+# Reload configuration
+r		Reload configuration

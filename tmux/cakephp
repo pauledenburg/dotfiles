@@ -1,0 +1,28 @@
+#cakephp sessie
+new  -s "cakephp" -n "Editor" /usr/bin/vim
+
+# send keys to the 1st pane (vi editor)
+send-keys -t 0 C-n
+
+# Create new pane: vertical split of the first pane with
+# a size of 20% 
+splitw -v -p 20 -t 0 "bash"
+
+# create a new window for the logging
+neww -n "Logging" "tail -f /var/log/apache2/*.log"
+
+# vertical split of 20% will become 2nd pane
+splitw -v -p 40 -t 2 "tail -f /var/log/mail*"
+
+# vertical split of 20% will become 2nd pane
+splitw -v -p 40 -t 2 "tail -f /var/log/syslog /var/log/messages"
+
+# select the first window, the first pane as active
+select-window -t 1
+select-pane -t 0
+
+# bind l to the bash prompt and kill panes without asking
+bind l splitw -v -p 40 -t 1  "bash"
+bind-key x kill-pane
+
+
